@@ -14,6 +14,7 @@ import service.ProductService;
 import javax.validation.Valid;
 import java.util.List;
 
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -27,7 +28,7 @@ public class AdminController {
 
     @RequestMapping("/admin/productInventory")
     public String getProducts(Model model){
-        List<Product>  products = productService.getProducts();
+        List<Product> products = productService.getProducts();
         model.addAttribute("products",products);
         return "productInventory";
     }
@@ -51,7 +52,7 @@ public class AdminController {
         }
         if(!productService.addProduct(product))
             System.out.println("adding product cannot be done");
-        return "redirect:/admin/productInventory";
+        return "redirect:/admin/admin/productInventory";
     }
 
     @RequestMapping(value="/productInventory/deleteProduct/{id}", method=RequestMethod.GET)
@@ -59,7 +60,7 @@ public class AdminController {
         if(!productService.deleteProduct(id))
             System.out.println("deleting product cannot be done");
 
-        return "redirect:/admin/productInventory";
+        return "redirect:/admin/admin/productInventory";
     }
 
     @RequestMapping(value="/productInventory/updateProduct/{id}", method=RequestMethod.GET)
@@ -82,6 +83,6 @@ public class AdminController {
         if(!productService.updateProduct(product))
             System.out.println("update product cannot be done");
 
-        return "redirect:/admin/productInventory";
+        return "redirect:/admin/admin/productInventory";
     }
 }
